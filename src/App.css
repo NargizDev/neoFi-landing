@@ -1,0 +1,8 @@
+#root {
+  margin: 0 auto;
+  font-family: 'Alexandria', sans-serif;
+}
+
+.group:hover .pause-on-hover {
+  animation-play-state: paused;
+}
