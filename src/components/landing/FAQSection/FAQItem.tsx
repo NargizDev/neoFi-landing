@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import type { FC } from "react";
 import { Minus, Plus } from "lucide-react";
 
-import type { FAQItem as FAQItemType } from "../../types";
+import type { FAQItem as FAQItemType } from "../../../types";
 
 type Props = {
   item: FAQItemType;

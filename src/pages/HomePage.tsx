@@ -1,12 +1,12 @@
 import MainLayout from "../layouts/MainLayout";
-import HeroSection from "../components/HeroSection/HeroSection";
-import PartnerLogos from "../components/PartnerLogos/PartnerLogos"
-import FeatureSection from "../components/FeatureSection/FeatureSection"
-import StatisticsSection from "../components/StatisticsSection/StatisticsSection";
-import BlockchainSection from "../components/BlockchainSection/BlockchainSection";
-import TestimonialSection from "../components/TestimonialSection/TestimonialSection";
-import FAQSection from "../components/FAQSection/FAQSection";
-import CTASection from "../components/CTASection/CTASection";
+import HeroSection from "../components/landing/HeroSection/HeroSection";
+import PartnerLogos from "../components/landing/PartnerLogos/PartnerLogos"
+import FeatureSection from "../components/landing/FeatureSection/FeatureSection"
+import StatisticsSection from "../components/landing/StatisticsSection/StatisticsSection";
+import BlockchainSection from "../components/landing/BlockchainSection/BlockchainSection";
+import TestimonialSection from "../components/landing/TestimonialSection/TestimonialSection";
+import FAQSection from "../components/landing/FAQSection/FAQSection";
+import CTASection from "../components/landing/CTASection/CTASection";
 
 const HomePage = () => (
   <MainLayout>

@@ -1,5 +1,5 @@
 import React from "react";
-import SectionHeader from "../common/SectionHeader";
+import SectionHeader from "../../common/SectionHeader";
 
 const CTASection: React.FC = () => {
   return (

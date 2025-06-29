@@ -1,6 +1,6 @@
 import React from "react";
-import SectionHeader from "../common/SectionHeader";
-import SectionGlow from "../common/SectionGlow";
+import SectionHeader from "../../common/SectionHeader";
+import SectionGlow from "../../common/SectionGlow";
 import FeatureCard from "./FeatureCard";
 
 const features = [

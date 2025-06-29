@@ -1,6 +1,6 @@
 import React from "react";
-import SectionGlow from "../common/SectionGlow";
-import SectionHeader from "../common/SectionHeader";
+import SectionGlow from "../../common/SectionGlow";
+import SectionHeader from "../../common/SectionHeader";
 import ScrollingTestimonials from "./ScrollingTestimonials";
 
 const TestimonialSection: React.FC = () => {
