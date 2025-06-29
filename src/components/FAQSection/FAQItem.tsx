@@ -1,46 +1,57 @@
-import React, { useState } from "react";
+import { motion } from "framer-motion";
+import type { FC } from "react";
 import { Minus, Plus } from "lucide-react";
 
-interface FAQItemProps {
-  question: string;
-  answer: string;
-}
+import type { FAQItem as FAQItemType } from "../../types";
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
-  const [isOpen, setIsOpen] = useState(false);
+type Props = {
+  item: FAQItemType;
+  index: number;
+  isOpen: (index: number) => boolean;
+  toggle: (index: number) => void;
+};
+
+export const FAQItem: FC<Props> = ({ item, index, isOpen, toggle }) => {
+  const expanded = isOpen(index);
+  const answerId = `faq-answer-${index}`;
+  const questionId = `faq-question-${index}`;
 
   return (
     <div
       className={`border border-white/10 rounded-md px-6 py-4 transition-colors duration-300 ${
-        isOpen ? "bg-white/5" : "hover:bg-white/5"
+        expanded ? "bg-white/5" : "hover:bg-white/5"
       }`}
     >
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full text-left text-white font-medium text-sm md:text-base transition"
-        aria-expanded={isOpen}
-        aria-controls={`faq-answer-${question}`}
+        onClick={() => toggle(index)}
+        className="flex items-center justify-between w-full text-left text-white font-medium text-sm md:text-base"
+        aria-expanded={expanded}
+        aria-controls={answerId}
+        id={questionId}
       >
-        <span>{question}</span>
+        <span>{item.question}</span>
         <span className="ml-4 text-neon">
-          {isOpen ? (
-            <Minus size={20} className="transition-transform duration-300" />
-          ) : (
-            <Plus size={20} className="transition-transform duration-300" />
-          )}
+          {expanded ? <Minus size={20} /> : <Plus size={20} />}
         </span>
       </button>
 
-      <div
-        id={`faq-answer-${question}`}
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-[500px] mt-4 opacity-100" : "max-h-0 opacity-0"
-        }`}
+      <motion.div
+        role="region"
+        aria-labelledby={questionId}
+        aria-hidden={!expanded}
+        initial={false}
+        animate={{
+          height: expanded ? "auto" : 0,
+          opacity: expanded ? 1 : 0,
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden text-gray-300 mt-2"
+        id={answerId}
       >
-        <p className="text-white/70 text-sm leading-relaxed">{answer}</p>
-      </div>
+        <p className="text-white/70 text-sm leading-relaxed">
+          {item.answer}
+        </p>
+      </motion.div>
     </div>
   );
 };
-
-export default FAQItem;
