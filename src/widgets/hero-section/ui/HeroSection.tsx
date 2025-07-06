@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import heroImg from "@/shared/assets/images/NeoFi Figure.png";
-
+import heroImg from "../../../shared/assets/images/NeoFi Figure.png";
 
 interface HeroSectionProps {
   className?: string;
