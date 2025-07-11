@@ -1,45 +1,11 @@
 import React from "react";
 import TestimonialCard from "@/entities/testimonial/ui/TestimonialCard";
-
+import { testimonials } from "@/entities/testimonial/model/data";
 import avatar from "@/shared/assets/images/testimonal-avatar.svg";
 
-const testimonials = [
-  {
-    name: "Eleanor Pena",
-    title: "Co-founder",
-    avatar: avatar,
-    message:
-      "AI streamlines international client coordination by scheduling emails for optimal inbox timing.",
-  },
-  {
-    name: "Darrell Steward",
-    title: "Co-founder",
-    avatar: avatar,
-    message:
-      "AI streamlines international client coordination by scheduling emails for optimal inbox timing.",
-  },
-  {
-    name: "Bessie Cooper",
-    title: "Co-founder",
-    avatar: avatar,
-    message:
-      "AI streamlines international client coordination by scheduling emails for optimal inbox timing.",
-  },
-  {
-    name: "Jerome Bell",
-    title: "Co-founder",
-    avatar: avatar,
-    message:
-      "AI streamlines international client coordination by scheduling emails for optimal inbox timing.",
-  },
-  {
-    name: "Guy Hawkins",
-    title: "Co-founder",
-    avatar: avatar,
-    message:
-      "AI streamlines international client coordination by scheduling emails for optimal inbox timing.",
-  },
-];
+const avatars: Record<string, string> = {
+  "testimonal-avatar.svg": avatar,
+};
 
 const looped = [...testimonials, ...testimonials];
 
@@ -54,7 +20,7 @@ const ScrollingTestimonials: React.FC = () => {
         <div className="flex gap-6 w-max animate-scrollLeft pause-on-hover">
           {looped.map((t, i) => (
             <div key={`top-${i}`} className="inline-block w-[300px]">
-              <TestimonialCard {...t} />
+              <TestimonialCard {...t} avatar={avatars[t.avatar]} />
             </div>
           ))}
         </div>
@@ -63,7 +29,7 @@ const ScrollingTestimonials: React.FC = () => {
         <div className="max-sm:hidden flex gap-6 w-max animate-scrollRight pause-on-hover">
           {looped.map((t, i) => (
             <div key={`bottom-${i}`} className="inline-block w-[300px]">
-              <TestimonialCard {...t} />
+              <TestimonialCard {...t} avatar={avatars[t.avatar]} />
             </div>
           ))}
         </div>

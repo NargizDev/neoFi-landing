@@ -2,28 +2,17 @@ import React from "react";
 import SectionHeader from "@/entities/section/ui/SectionHeader";
 import SectionGlow from "@/entities/section/ui/SectionGlow";
 import FeatureCard from "@/entities/feature/ui/FeatureCard";
+import { features } from "@/entities/feature/model/data";
 
 import scalabilityIcon from "@/shared/assets/images/features-logo/scalability.svg";
 import decentralisationIcon from "@/shared/assets/images/features-logo/decentralisation.svg";
 import connectivityIcon from "@/shared/assets/images/features-logo/connectivity.svg";
 
-const features = [
-  {
-    icon: scalabilityIcon,
-    title: "Scalability",
-    description: "Adapt and grow, no matter the demand on grow",
-  },
-  {
-    icon: decentralisationIcon,
-    title: "Decentralisation",
-    description: "Web3 aims to move away from the centralized",
-  },
-  {
-    icon: connectivityIcon,
-    title: "Connectivity",
-    description: "Computers will be able to understand information similarly to humans",
-  },
-];
+const icons: Record<string, string> = {
+  "scalability.svg": scalabilityIcon,
+  "decentralisation.svg": decentralisationIcon,
+  "connectivity.svg": connectivityIcon,
+};
 
 const FeatureSection: React.FC = () => {
   return (
@@ -38,7 +27,7 @@ const FeatureSection: React.FC = () => {
         {features.map((feature, index) => (
           <FeatureCard
             key={index}
-            icon={feature.icon}
+            icon={icons[feature.icon.split("/").pop()!]}
             title={feature.title}
             description={feature.description}
           />

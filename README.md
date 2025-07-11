@@ -1,54 +1,84 @@
-# React + TypeScript + Vite
+# Архитектура проекта neoFi-landing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Общие принципы
+- Проект построен по принципам feature-sliced design (FSD) с разделением на слои: app, entities, features, shared, widgets, pages, processes и т.д.
+- Используется TypeScript, React, Vite, TailwindCSS.
+- Все бизнес-логика и UI-компоненты разделены по смысловым блокам для масштабируемости и переиспользования.
 
-Currently, two official plugins are available:
+## Основные директории
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **app/** — глобальные провайдеры (контексты, темы, QueryProvider) и роутинг приложения.
+- **entities/** — бизнес-сущности: минимальные, переиспользуемые компоненты и их данные (например, Blockchain, FAQ, Feature, Testimonial).
+- **features/** — отдельные фичи, реализующие конкретную пользовательскую задачу (например, переключение FAQ, форма подписки).
+- **layouts/** — макеты страниц (Header, Footer, MainLayout), отвечающие за общую структуру.
+- **pages/** — страницы приложения (например, HomePage), каждая страница собирает виджеты, фичи и сущности.
+- **processes/** — сложные пользовательские сценарии, объединяющие несколько фич и сущностей (например, subscribe-flow).
+- **services/** — сервисы для работы с внешними API и другими источниками данных.
+- **shared/** — общие компоненты, ассеты, утилиты, хуки, конфиги, которые могут использоваться в любом месте проекта.
+- **types/** — глобальные типы TypeScript.
+- **widgets/** — крупные секции/виджеты, собирающие сущности и фичи для отображения на страницах (например, HeroSection, FAQSection, FeatureSection и т.д.).
 
-## Expanding the ESLint configuration
+## Пример структуры страницы
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+HomePage (pages/home/HomePage.tsx)
+│
+├── HeroSection (widgets/hero-section/ui/HeroSection.tsx)
+├── FeatureSection (widgets/feature-section/ui/FeatureSection.tsx)
+├── BlockchainSection (widgets/blockchain-section/ui/BlockchainSection.tsx)
+├── FAQSection (widgets/faq-section/ui/FAQSection.tsx)
+├── TestimonialSection (widgets/testimonial-section/ui/TestimonialSection.tsx)
+├── CTASection (widgets/cta-section/ui/CTASection.tsx)
+└── Footer, Header (layouts/)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Принципы разработки
+- Каждый слой зависит только от нижележащих (shared → entities → features → widgets → pages).
+- Переиспользуемые компоненты и данные выносятся в shared и entities.
+- Фичи не должны знать о страницах, только о сущностях и shared.
+- Виджеты собирают фичи и сущности для формирования секций страниц.
+- Страницы собирают виджеты и макеты.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Стили
+- TailwindCSS для utility-first стилей.
+- Глобальные стили — в App.css и index.css.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Провайдеры
+- Все глобальные провайдеры (темы, QueryProvider и др.) подключаются в app/providers.
+
+## Требования к компонентам
+- Компоненты должны быть независимыми и легко тестируемыми.
+- Код компонентов должен быть читаемым и поддерживаемым.
+- Для импортов используйте краткие alias-пути (например, `@/shared/ui/Button`, `@/widgets/hero-section`), чтобы избежать длинных относительных путей и повысить удобство навигации по проекту.
+
+---
+
+## Storybook
+
+В проекте используется [Storybook](https://storybook.js.org/) для разработки, тестирования и документирования UI-компонентов в изоляции.
+
+### Запуск Storybook
+
+```bash
+npm run storybook
 ```
+или
+```bash
+yarn storybook
+```
+
+### Основные возможности
+
+- Просмотр и тестирование компонентов в изоляции
+- Документация для компонентов
+- Визуальное тестирование и быстрый просмотр изменений
+
+### Где находятся сторисы
+
+Файлы сторис для компонентов располагаются рядом с компонентами или в папке `src/stories/`.
+
+| Команда             | Поведение                               |
+| ------------------- | --------------------------------------- |
+| `npm run dev`       | Запускается Vite + мок API              |
+| `npm run test`      | Работают все `*.test.tsx`               |
+| `npm run storybook` | Работает Storybook независимо от Vitest |

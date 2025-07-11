@@ -26,7 +26,7 @@ const PlayIcon = (
 const HeroSection: React.FC<HeroSectionProps> = () => (
   <section
     className="w-full flex flex-col md:flex-row items-center justify-between pt-[6rem] pb-16 px-6 sm:px-8 md:px-16 xl:px-[4.5rem]"
-    aria-label="Hero section"
+    aria-label="Hero section" id="home"
   >
     <div className="flex-1 flex flex-col items-center lg:items-start justify-center text-center lg:text-left mt-10 lg:mt-0">
       <span
