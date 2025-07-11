@@ -12,7 +12,7 @@ const Header: React.FC = () => {
         <span className="text-white font-medium text-xl">NeoFi</span>
       </div>
       <nav className="hidden md:flex gap-8 text-gray-200">
-        <a href="#features" className="hover:text-white transition">
+        <a href="#home" className="hover:text-white transition">
           Home
         </a>
         <a href="#features" className="hover:text-white transition">
