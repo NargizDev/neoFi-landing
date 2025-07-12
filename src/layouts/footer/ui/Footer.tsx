@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-1 text-white/70 text-sm font-light">
               <li>
                 <a href="#help" className="hover:text-white transition-colors">
-                  Help Centre
+                  Help Center
                 </a>
               </li>
               <li>

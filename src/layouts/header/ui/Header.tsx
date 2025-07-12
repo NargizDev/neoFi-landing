@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "@/shared/assets/images/logo.svg";
-
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -26,12 +26,12 @@ const Header: React.FC = () => {
         </a>
       </nav>
       <div className="flex gap-2">
-        <button className="text-white px-4 py-2 rounded-3xl font-normal hover:bg-neutral-800 transition">
+        <Link to="/login" className="text-white px-4 py-2 rounded-3xl font-normal hover:bg-neutral-800 transition">
           Log in
-        </button>
-        <button className="bg-neon text-black px-4 py-2 rounded-3xl font-normal transition border border-neon">
+        </Link>
+        <Link to="/sign-up" className="bg-neon text-black px-4 py-2 rounded-3xl font-normal transition border border-neon">
           Try For Free
-        </button>
+        </Link>
       </div>
     </header>
   );
