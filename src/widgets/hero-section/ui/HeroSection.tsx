@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import heroImg from "../../../shared/assets/images/NeoFi Figure.png";
+import { Link } from "react-router-dom";
 
 interface HeroSectionProps {
   className?: string;
@@ -43,15 +44,16 @@ const HeroSection: React.FC<HeroSectionProps> = () => (
         {HERO_SUBTITLE}
       </p>
       <div className="flex flex-col sm:flex-row gap-4 sm:w-auto justify-center lg:justify-start">
-        <motion.button
-          whileHover="hover"
-          whileTap="tap"
-          variants={BUTTON_VARIANTS}
-          className="bg-neon hover:bg-neon-light text-black font-normal px-6 py-3 rounded-3xl transition"
-          aria-label="Get started with NeoFi"
-        >
-          Get Started
-        </motion.button>
+        <motion.div whileHover="hover" whileTap="tap" variants={BUTTON_VARIANTS}>
+          <Link
+            to="/sign-up"
+            className="bg-neon hover:bg-neon-light text-black font-normal px-6 py-3 rounded-3xl transition flex items-center justify-center"
+            aria-label="Get started with NeoFi"
+            style={{ display: 'inline-block' }}
+          >
+            Get Started
+          </Link>
+        </motion.div>
         <motion.button
           whileHover="hover"
           whileTap="tap"

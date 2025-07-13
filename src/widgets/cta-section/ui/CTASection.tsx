@@ -1,5 +1,6 @@
 import React from "react";
 import SectionHeader from "@/entities/section/ui/SectionHeader";
+import { Link } from "react-router-dom";
 
 const CTASection: React.FC = () => {
   return (
@@ -10,9 +11,12 @@ const CTASection: React.FC = () => {
         desc="Join a thriving community committed to safeguarding digital assets, empowering your financial journey with trust, innovation, and security"
       />
       <div className="mt-10">
-        <button className="bg-neon text-black font-normal px-6 py-3 rounded-md hover:bg-[#baff62] transition inline-block">
+        <Link
+          to="/sign-up"
+          className="bg-neon text-black font-normal px-6 py-3 rounded-md hover:bg-[#baff62] transition inline-block"
+        >
           Get Started
-        </button>
+        </Link>
       </div>
     </section>
   );
