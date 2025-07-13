@@ -126,6 +126,6 @@ yarn test
 
 ---
 
-**Feel free to explore, run, and extend this project! If you have any questions, please contact me via [your email or LinkedIn].**
+**Feel free to explore, run, and extend this project! If you have any questions, please contact me via [my email - nargiz1.ismayilova@gmail.com or [LinkedIn](https://www.linkedin.com/in/nargiz-dev/)].**
 
----
+---        
